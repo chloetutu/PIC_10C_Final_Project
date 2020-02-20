@@ -1,0 +1,13 @@
+<RCC>
+    <qresource prefix="/">
+        <file>play.png</file>
+        <file>exit.png</file>
+        <file>training.png</file>
+        <file>menu.png</file>
+        <file>main.png</file>
+        <file>player.png</file>
+        <file>wall.png</file>
+        <file>target.png</file>
+        <file>title.png</file>
+    </qresource>
+</RCC>
