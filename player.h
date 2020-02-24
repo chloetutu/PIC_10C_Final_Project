@@ -34,6 +34,7 @@ public:
     void move_left();
     void move_up();
     void move_down();
+    void set_character();
 private:
     std::vector<Food*> sandwich;
 
@@ -42,6 +43,7 @@ private:
     int pos_x;
     int pos_y;
     bool draw_character = true;
+    bool change_character = true;
     QString type_of_sandwich;
 
 

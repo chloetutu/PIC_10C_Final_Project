@@ -23,6 +23,11 @@ Player::Player(int x,int y, int person){
     chara = person;
 }
 
+void Player::set_character()
+{
+    if (chara != 0)
+        chara = rand() % 4 + 1;
+}
 
 bool Player:: check_order(Player *other){
     if(this->get_vector_size() == other->get_vector_size()){
@@ -103,7 +108,11 @@ void Player::set_basic_sandwich(){
 }
 
 void Player::paintEvent(QPaintEvent* e){
-    if (chara != 0) chara = rand() % 4 + 1;
+    if(change_character){
+    if (chara != 0)
+        chara = rand() % 4 + 1;
+    change_character = false;
+    }
 if (draw_character == true && chara == 1){
     QPainter painter(this);
     QPixmap player(":/chara1.png");
