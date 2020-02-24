@@ -6,6 +6,7 @@
 #include <QSpinBox>
 #include <QVBoxLayout>
 #include <QMainWindow>
+#include <QStackedWidget>
 #include "wall.h"
 #include "target.h"
 #include "health.h"
@@ -43,6 +44,8 @@ public slots:
     void customer_order2();
     void customer_order3();
     void customer_order4();
+    void goToWin();
+    void goToLose();
 private:
     //The different text that will appear on the window
     QLabel* text1;
@@ -81,12 +84,10 @@ private:
     Player* customer4;
    QPushButton* order4;
 
-
    QWidget* secondPage;
    QWidget* mPartner;
    QPushButton* homeScreen;
-
-
+   QStackedWidget* stackedWidget;
 
 signals:
 };

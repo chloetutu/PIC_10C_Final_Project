@@ -16,11 +16,11 @@ Player::Player(QWidget *parent)
 
 }
 
-Player::Player(int x,int y){
+Player::Player(int x,int y, int person){
     srand(time(NULL));
-
     pos_x =x;
     pos_y= y;
+    chara = person;
 }
 
 
@@ -102,18 +102,34 @@ void Player::set_basic_sandwich(){
 
 }
 
-
-void Player:: paintEvent(QPaintEvent* e){
-
-if (draw_character == true){
+void Player::paintEvent(QPaintEvent* e){
+    if (chara != 0) chara = rand() % 4 + 1;
+if (draw_character == true && chara == 1){
+    QPainter painter(this);
+    QPixmap player(":/chara1.png");
+    player = player.scaled(this->size(), Qt::IgnoreAspectRatio);
+    painter.drawPixmap(rect(), player);}
+if (draw_character == true && chara == 2){
+    QPainter painter(this);
+    QPixmap player(":/chara2.png");
+    player = player.scaled(this->size(), Qt::IgnoreAspectRatio);
+    painter.drawPixmap(rect(), player);}
+if (draw_character == true && chara == 3){
+    QPainter painter(this);
+    QPixmap player(":/chara3.png");
+    player = player.scaled(this->size(), Qt::IgnoreAspectRatio);
+    painter.drawPixmap(rect(), player);}
+if (draw_character == true && chara == 4){
+    QPainter painter(this);
+    QPixmap player(":/chara4.png");
+    player = player.scaled(this->size(), Qt::IgnoreAspectRatio);
+    painter.drawPixmap(rect(), player);}
+if (draw_character == true && chara == 0){
     QPainter painter(this);
     QPixmap player(":/player.png");
     player = player.scaled(this->size(), Qt::IgnoreAspectRatio);
-    painter.drawPixmap(rect(), player);
-
-}
-    return;
-
+    painter.drawPixmap(rect(), player);}
+return;
 }
 
 void Player::remove_event(){

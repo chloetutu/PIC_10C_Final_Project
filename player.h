@@ -13,11 +13,9 @@
 #include <vector>
 class Player:public QWidget{
 public:
-  // void keyPressEvent(QKeyEvent* e);
-  // void keyReleaseEvent(QKeyEvent *event);
    void set_position(int,int);
     Player(QWidget *parent= nullptr);
-    Player(int,int);
+    Player(int,int,int player = 0);
 
     void paintEvent(QPaintEvent* e);
     void remove_event();
@@ -40,7 +38,7 @@ private:
     std::vector<Food*> sandwich;
 
     int rand_num =0;
-
+    int chara;
     int pos_x;
     int pos_y;
     bool draw_character = true;
