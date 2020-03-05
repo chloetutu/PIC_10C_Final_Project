@@ -19,22 +19,27 @@ public:
 
     void paintEvent(QPaintEvent* e);
     void remove_event();
+    void create_event();
     int get_pos_x();
     int get_pos_y();
     void add_food(Food*);
 
-    QVBoxLayout* print_sandwich();
+    QString* print_sandwich();
     void test_print_sandwich();
-    int get_vector_size();
+    size_t get_vector_size();
     void set_basic_sandwich();
+    void set_intermediate_sandwich();
+    void set_expert_sandwich();
     Player& operator = (Player*);
     bool check_order(Player*);
+    bool check_presence();
     void delete_sandwich();
     void move_right();
     void move_left();
     void move_up();
     void move_down();
     void set_character();
+
 private:
     std::vector<Food*> sandwich;
 
@@ -46,8 +51,5 @@ private:
     bool change_character = true;
     QString type_of_sandwich;
 
-
-
 };
 #endif // PLAYER_H
-

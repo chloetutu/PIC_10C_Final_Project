@@ -10,7 +10,6 @@
 #include <QMediaPlayer>
 #include <QStackedWidget>
 #include "wall.h"
-#include "target.h"
 #include "health.h"
 #include "player.h"
 #include "meat.h"
@@ -35,8 +34,6 @@ public:
     //void printgrid(int, int);
     ~SecondWindow();
     //virtual void paintEvent(QPaintEvent* e);
-    void draw_walls();
-    void draw_targets();
     void decrease_health();
     void set_up_customers();
     void keyPressEvent(QKeyEvent *event);

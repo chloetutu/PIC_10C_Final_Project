@@ -270,6 +270,8 @@ void Player::set_expert_sandwich(){
 }
 
 void Player::paintEvent(QPaintEvent* e) {
+    rect().setX(2);
+    rect().setY(2);
     if(change_character) {
         if (chara != 0)
             chara = rand() % 4 + 1;
@@ -278,32 +280,39 @@ void Player::paintEvent(QPaintEvent* e) {
         QPainter painter(this);
         QPixmap player(":/chara1.png");
         player = player.scaled(this->size(), Qt::IgnoreAspectRatio);
-        painter.drawPixmap(rect(), player);}
-    if (draw_character == true && chara == 2){
+         painter.drawPixmap(2,2,25,40, player);
+    }
+    else if (draw_character == true && chara == 2){
         QPainter painter(this);
         QPixmap player(":/chara2.png");
         player = player.scaled(this->size(), Qt::IgnoreAspectRatio);
-        painter.drawPixmap(rect(), player);}
-    if (draw_character == true && chara == 3){
+         painter.drawPixmap(2,2,25,40, player);
+    }
+    else if (draw_character == true && chara == 3){
         QPainter painter(this);
         QPixmap player(":/chara3.png");
         player = player.scaled(this->size(), Qt::IgnoreAspectRatio);
-        painter.drawPixmap(rect(), player);}
-    if (draw_character == true && chara == 4){
+         painter.drawPixmap(2,2,25,40, player);
+    }
+    else if (draw_character == true && chara == 4){
         QPainter painter(this);
         QPixmap player(":/chara4.png");
         player = player.scaled(this->size(), Qt::IgnoreAspectRatio);
-        painter.drawPixmap(rect(), player);}
-    if (draw_character == true && chara == 0){
+         painter.drawPixmap(2,2,25,40, player);}
+    else if (draw_character == true && chara == 0){
         QPainter painter(this);
         QPixmap player(":/player.png");
         player = player.scaled(this->size(), Qt::IgnoreAspectRatio);
-        painter.drawPixmap(rect(), player);}
+       painter.drawPixmap(2, 2 , 40 ,40, player);}
     return;
 }
 
 void Player::remove_event(){
     draw_character = false;
+    this-> update();
+}
+void Player::create_event(){
+    draw_character = true;
     this-> update();
 }
 

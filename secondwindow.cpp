@@ -53,7 +53,6 @@ SecondWindow::SecondWindow(QWidget *parent)
     backToHome1->setIconSize(homePix.rect().size());
     backToHome1->setFixedSize(homePix.rect().size());
     connect(backToHome1, SIGNAL(clicked()),this,SLOT(goToSecondPage())); // RIGHT NOW, WHEN YOU WIN/LOSE YOU CAN ONLY EXIT TO THE GAME SCREEN, NOT THE HOME SCREEN
-
     backToHome2 = new QPushButton();
     backToHome2->setIcon(homeIcon);
     backToHome2->setIconSize(homePix.rect().size());
@@ -62,7 +61,7 @@ SecondWindow::SecondWindow(QWidget *parent)
 
     title_space = new QHBoxLayout();
     play_space = new QGridLayout();
-    sandwich_layout = new QGridLayout();
+//    sandwich_layout = new QGridLayout();
 
    /* QTimer* timer = new QTimer(this);
        connect(timer, SIGNAL(timeout()), this, SLOT(update()));
@@ -88,7 +87,7 @@ SecondWindow::SecondWindow(QWidget *parent)
     text1->setStyleSheet("QLabel { color : black }");
     health_text = new QLabel("      Health: "+ QString::number(health) );
     health_text->setStyleSheet("QLabel { color : black }");
-    main_character = new Player;
+    main_character = new Player();
 
     breadBin1 = new Bread_Bin(8,2, "White Bread");
     breadBin2 = new Bread_Bin(9,2, "Whole Wheat Bread");
@@ -109,10 +108,10 @@ SecondWindow::SecondWindow(QWidget *parent)
     trash = new Bin(4, 1);
 
     //SET UP CUSTOMER
-    customer1 = new Player(1,2,1);
-    customer2 = new Player(1,3,2);
-    customer3 = new Player(1,4,3);
-    customer4 = new Player(1,5,4);
+    customer1 = new Player(1,3,1);
+    customer2 = new Player(1,4,2);
+    customer3 = new Player(1,5,3);
+    customer4 = new Player(1,6,4);
     order1 = new QPushButton ("Order 1");
     order2 = new QPushButton ("Order 2");
     order3 = new QPushButton ("Order 3");
@@ -134,8 +133,9 @@ SecondWindow::SecondWindow(QWidget *parent)
 //    connect(recipes, SIGNAL(clicked()),this,SLOT(goToMenu()));
     connect(backToGame, SIGNAL(clicked()),this,SLOT(goToSecondPage()));
 
-    draw_walls();
 
+//    QSpacerItem* top = new QSpacerItem(700, 100, QSizePolicy::Maximum, QSizePolicy::Maximum);
+//    title_space->addItem(top, 1, 1, 2, 10, Qt::AlignCenter);
     title_space->addWidget(text1);
     title_space->addWidget(health_text);
     title_space->addWidget(homeScreen);
@@ -152,6 +152,26 @@ SecondWindow::SecondWindow(QWidget *parent)
     }*/
 
     // places customers
+
+    QSpacerItem* one = new QSpacerItem(50, 50, QSizePolicy::Fixed, QSizePolicy::Fixed);
+    play_space->addItem(one, 1, 1, 1, 13);
+    QSpacerItem* two = new QSpacerItem(50, 50, QSizePolicy::Fixed, QSizePolicy::Fixed);
+    play_space->addItem(two, 2, 1, 1, 13);
+    QSpacerItem* three = new QSpacerItem(50, 50, QSizePolicy::Fixed, QSizePolicy::Fixed);
+    play_space->addItem(three, 3, 1, 1, 13);
+    QSpacerItem* four = new QSpacerItem(50, 50, QSizePolicy::Fixed, QSizePolicy::Fixed);
+    play_space->addItem(four, 4, 1, 1, 13);
+    QSpacerItem* five = new QSpacerItem(50, 50, QSizePolicy::Fixed, QSizePolicy::Fixed);
+    play_space->addItem(five, 5, 1, 1, 13);
+    QSpacerItem* six = new QSpacerItem(50, 50, QSizePolicy::Fixed, QSizePolicy::Fixed);
+    play_space->addItem(six, 6, 1, 1, 13);
+    QSpacerItem* seven = new QSpacerItem(50, 50, QSizePolicy::Fixed, QSizePolicy::Fixed);
+    play_space->addItem(seven, 7, 1, 1, 13);
+    QSpacerItem* eight = new QSpacerItem(50, 50, QSizePolicy::Fixed, QSizePolicy::Fixed);
+    play_space->addItem(eight, 8, 1, 1, 13);
+    QSpacerItem* nine = new QSpacerItem(200, 200, QSizePolicy::Fixed, QSizePolicy::Fixed);
+    play_space->addItem(nine, 9, 1, 1, 13);
+
     play_space->addWidget(customer1,customer1->get_pos_y(),customer1->get_pos_x());
     play_space->addWidget(order1, customer1->get_pos_y(),customer1->get_pos_x()+1);
     play_space->addWidget(customer2,customer2->get_pos_y(),customer2->get_pos_x());
@@ -346,21 +366,6 @@ void SecondWindow::customer_order7() {
     return;
 }
 
-void SecondWindow::draw_walls() {
-    for (int i= 0; i<8; i++) {
-        Wall* a= new Wall;
-        play_space->addWidget(a,i,0);
-    } for (int i= 0; i<8; i++) {
-        Wall* a= new Wall;
-        play_space->addWidget(a,i,16);
-    } for (int i= 0; i<16; i++) {
-        Wall* a= new Wall;
-        play_space->addWidget(a,0,i);
-    } for (int i= 0; i<16; i++) {
-        Wall* a= new Wall;
-        play_space->addWidget(a,8,i);
-    }
-}
 
 void SecondWindow::decrease_health(){
     health = health - 1;
@@ -396,12 +401,12 @@ void SecondWindow::keyPressEvent(QKeyEvent *event) {
             play_space->addWidget(main_character, main_character->get_pos_y(),main_character->get_pos_x());
         }
     } else if(event->key() == Qt::Key_D||event->key() == Qt::Key_Right) {
-        if (main_character->get_pos_x() < 16) {
+        if (main_character->get_pos_x() < 13) {
             main_character->move_right();
             play_space->addWidget(main_character, main_character->get_pos_y(),main_character->get_pos_x());
         }
     } else if(event->key() == Qt::Key_W||event->key() == Qt::Key_Up) {
-        if (main_character->get_pos_y() > 0) {
+        if (main_character->get_pos_y() > 1) {
             main_character->move_up();
             play_space->addWidget(main_character, main_character->get_pos_y(),main_character->get_pos_x());
         }
@@ -551,7 +556,7 @@ void SecondWindow::keyPressEvent(QKeyEvent *event) {
                     main_character->delete_sandwich();
                     decrease_health();
                     health_text->setText("      Health: " + QString::number(health));
-                    text1->setText(" No,no, that isn't right");
+                    text1->setText(" No, no, that isn't right");
                 }
         } if (challenge_number == 1 && people_served == 4) {
             goToWin(); // maybe only "you've been promoted"?
@@ -638,6 +643,7 @@ RecipeWindow::RecipeWindow(QWidget *parent) : QWidget(parent)
     toSecondW->setIconSize(toSecondWPix.rect().size());
     toSecondW->setFixedSize(toSecondWPix.rect().size());
 
+
     QSpacerItem* top = new QSpacerItem(300, 600, QSizePolicy::Maximum, QSizePolicy::Maximum);
     QSpacerItem* right = new QSpacerItem(10, 10, QSizePolicy::Maximum, QSizePolicy::Maximum);
     buttonLayout->addItem(top, 1, 1, 2, 4, Qt::AlignCenter);
@@ -645,6 +651,7 @@ RecipeWindow::RecipeWindow(QWidget *parent) : QWidget(parent)
     buttonLayout->addWidget(recipeBack, 3, 3, Qt::AlignRight);
     buttonLayout->addWidget(recipeForward, 3, 4, Qt::AlignLeft);
     buttonLayout->addWidget(toSecondW, 3, 1, Qt::AlignRight);
+
     recipeBack->hide();
     setLayout(buttonLayout);
 }
